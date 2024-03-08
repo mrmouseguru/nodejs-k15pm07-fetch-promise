@@ -1,9 +1,9 @@
 export default class App {
   constructor() {
-    this._onClick = this._onClick.bind(this);
+    this._onClickBetter = this._onClickBetter.bind(this);
 
     let button = document.querySelector("#button");
-    button.addEventListener("click", this._onClick);
+    button.addEventListener("click", this._onClickBetter);
   }
 
   _onClick(event) {
@@ -24,5 +24,18 @@ export default class App {
         
       });
     });
+  }
+
+  async _onClickBetter(event){
+    //await
+    let response = await fetch("myfile.txt");//return a promise + response
+    let text = await response.text();//return promise + text data
+    
+
+    let response2 = await fetch("person.json");
+    let obj = await response2.json();
+    document.querySelector("#results").textContent = 
+    `${text}\n${obj.givenName} ${obj.surname}`;
+
   }
 }
