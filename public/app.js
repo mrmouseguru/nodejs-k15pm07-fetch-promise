@@ -12,7 +12,16 @@ export default class App {
     p.then((response) => {
       let p2 = response.text();//return a promise + text data
       p2.then((text) =>{
-        document.querySelector("#results").textContent = text;
+        let p3 = fetch("person.json");//return a promise + response
+        p3.then((response) => {
+          let p4 = response.json();//return promise with json data
+          p4.then((obj) =>{
+            document.querySelector("#results").textContent = 
+            `${text}\n${obj.givenName} ${obj.surname}`;
+          });
+        });
+
+        
       });
     });
   }
